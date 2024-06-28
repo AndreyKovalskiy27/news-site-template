@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/base.css">
+    <link rel="stylesheet" href="static/index.css">
+    <title>News - головна</title>
+</head>
+
+<body>
+    <!-- Верхня панель -->
+    <header class="header">
+        <nav class="menu">
+            <a href="#">
+                <h1 class="title link">News</h1>
+            </a>
+            <a href="#">
+                <li class="info-link link">Інформація</li>
+            </a>
+            <a href="#">
+                <li class="admin-panel-link link">Адмін панель</li>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Контент на сторінці -->
+    <main class="main">
+        <!-- Фільтр по категоріям -->
+        <div class="news-category-filter">
+            <h3>Фільтр по категоріям</h3>
+            <div class="news-category-filter-form">
+                <a class="category" href="?{% change_params category='' %}">Всі категорії</a>
+                {% for category in categories %}
+                <a class="category" href="?{% change_params category=category.slug %}" name="category">{{ category.name
+                    }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Пошук -->
+        <div class="search">
+            <h3>Пошук</h3>
+            <form class="search-form" action="{% url " main:index" %}" method="get">
+                <input type="text" name="query" placeholder="Пошук" value="{{ request.GET.query}}">
+                {% if request.GET.category %}
+                <input type="hidden" name="category" value="{{ request.GET.category }}">
+                {% endif %}
+                <button type="submit">Пошук</button>
+                <a href="?{% change_params query='' %}"><button type="button">Скинути</button></a>
+            </form>
+        </div>
+
+        <!-- Новини -->
+        <div class="news">
+            <a href="#">
+                <article class="new">
+                    <img src="#" onerror="this.src='static/image_not_found.png';" alt="Зображення новини">
+                    <h2 class="new-title">
+                        Заголовок
+                    </h2>
+
+                    <p class="new-text">
+                        Текст
+                    </p>
+
+                    <hr class="new-category-line">
+                    <p class="new-category">Категорія: ?</p>
+                </article>
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>
