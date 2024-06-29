@@ -27,6 +27,11 @@
     color: #fff;
     word-wrap: break-word;
 }
+.nothing-found {
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+}
 
 .new-text {
     color: #ccc;
